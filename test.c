@@ -1,60 +1,41 @@
 #define _CRT_SECURE_NO_WARNINGS 1
-#include"contact.h"
-void menu()
-{
-	printf("*********************************\n");
-	printf("***  1. Add           2. Del  ***\n");
-	printf("***  3.Search         4.Modify***\n");
-	printf("***  5. Show          6.Sort  ***\n");
-	printf("***  7.Clear          0.Exit  ***\n");
-	printf("*********************************\n");
-	printf("                                 \n");
-}
-void test()
-{
-	Contact my_con;
-	InitContact(&my_con);//初始化通讯录
-	int input = 0;
-	do
-	{
-		menu();
-		printf("请选择>: ");
-		scanf("%d", &input);
-		switch (input)
-		{
-		case Exit:
-			break;
-		case Add:
-			AddContact(&my_con);//增加联系人
-			break;
-		case Del:
-			DelContact(&my_con);//删除联系人
-			break;
-		case Search:
-			SearchContact(&my_con);//查询联系人
-			break;
-		case Modify:
-			ModifyContact(&my_con);//修改联系人
-			break;
-		case Show:
-			ShowContact(&my_con);//显示联系人
-			break;
-		case Sort:
-			SortContact(&my_con);//对联系人排序，按名字排序
-			break;
-		case Clear:
-			ClearContact(&my_con);//清空通讯录
-			break;
-		default:
-			printf("输入错误，请重新输入\n");
-			break;
-		}
-	} while (input);
-}
+#include "LinkList.h"
 
-
+void Test()
+{
+	pNode plist;//此为一级指针的变量
+	InitLinkList(&plist);
+	PushFront(&plist, 1);
+	PushFront(&plist, 2);
+	PushFront(&plist, 3);
+	PushFront(&plist, 4);
+	Display(plist);
+	
+	//Show(plist);
+	/*Node*pos = Find(plist, 3);
+	DelNotTail(pos);
+	Display(plist);
+	Node*pos1 = Find(plist, 2);
+	DelNotTail(pos1);
+	Display(plist);*/
+	/*Node*pos = Find(plist, 3);
+	InsertFrontNode(pos, 6);
+	Display(plist);
+	Node*pos1 = Find(plist, 1);
+	InsertFrontNode(pos1, 7);
+	Display(plist);*/
+	//Node*pos = Find(plist, 1);//成环
+	//pos->next = plist;
+	//
+	//Node* last=JosephCycle(plist, 3);
+	//printf("lucky %d", last->data);
+	//DestroyList(&plist);
+	ReverseList(&plist);
+	Display(plist);
+}
 int main()
 {
-	test();
+	Test();
+	system("pause");
 	return 0;
 }
